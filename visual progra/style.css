@@ -1,0 +1,207 @@
+/* --- VARIABLES --- */
+:root {
+    --color-principal: #ff4b4b;
+    --color-fondo: #121212;
+    --color-tarjeta: #1e1e1e;
+    --color-texto: #ffffff;
+    --verde-exito: #25d366;
+    --verde-spotify: #1DB954;
+    --dorado: #ffd700;
+}
+
+/* --- ESTILOS GENERALES --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    line-height: 1.6;
+}
+
+header {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, #2c2c2c 0%, #121212 100%);
+    padding: 0 20px;
+}
+
+.container { 
+    width: 90%; 
+    max-width: 500px; 
+    margin: auto; 
+    padding-bottom: 50px;
+}
+
+.section-title {
+    border-left: 4px solid var(--color-principal);
+    padding-left: 15px;
+    margin: 40px 0 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.card {
+    background-color: var(--color-tarjeta);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* --- SECCIÓN 2: TERMÓMETRO --- */
+.mood-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.mood-btn {
+    background: #333;
+    color: white;
+    border: 1px solid #444;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.mood-btn:active {
+    background: var(--color-principal);
+    transform: scale(0.95);
+}
+
+#mood-response {
+    display: none;
+    border-top: 4px solid var(--verde-exito);
+    animation: slideIn 0.5s ease-out;
+}
+
+/* --- SECCIÓN 3: VALLENATO --- */
+.vallenato-card {
+    background: linear-gradient(145deg, #1e1e1e, #2a1a1a);
+    border: 1px solid #ffeb3b33;
+    text-align: center;
+}
+
+.lyrics {
+    font-style: italic;
+    color: #ffeb3b;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.play-btn {
+    background-color: var(--verde-spotify);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* --- SECCIÓN 4: LA MOTO & CONTADOR --- */
+.moto-card {
+    border: 1px solid var(--color-principal);
+    background: linear-gradient(145deg, #1e1e1e, #000);
+    text-align: center;
+}
+
+#countdown {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 25px 0;
+    gap: 10px;
+}
+
+.time-block span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-principal);
+    display: block;
+}
+
+.time-block p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.meta-frase {
+    color: var(--dorado);
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+/* --- OTROS --- */
+.btn-panic {
+    background: var(--color-principal);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 50px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(255, 75, 75, 0.3);
+}
+
+#mensaje-secreto {
+    display: none;
+    background: var(--verde-exito);
+    color: black;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.separator { border: 0; height: 1px; background: #333; margin: 40px 0; }
+
+footer { 
+    padding: 60px 20px; 
+    text-align: center; 
+    opacity: 0.4; 
+    font-size: 0.8rem; 
+    background: #000;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Esto es lo que pone los números uno al lado del otro */
+#countdown {
+    display: flex !important;
+    justify-content: space-around;
+    text-align: center;
+    margin: 20px 0;
+    flex-direction: row; /* Fuerza a que sea horizontal */
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-block span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
+span[style*="letter-spacing: 2px;"] {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}

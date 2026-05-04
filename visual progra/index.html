@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para la más tesa ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <!-- Script de Confeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --color-principal: #ff4b4b;
+            --color-fondo: #121212;
+            --color-tarjeta: #1e1e1e;
+            --color-texto: #ffffff;
+            --verde-exito: #25d366;
+            --verde-spotify: #1DB954;
+            --dorado: #ffd700;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #2c2c2c 0%, #121212 100%);
+            width: 100%;
+        }
+
+        h1 { font-size: 2rem; margin: 0; color: var(--color-principal); }
+        .subtitle { font-size: 0.9rem; opacity: 0.7; }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 20px 0;
+        }
+
+        .section-title {
+            border-left: 4px solid var(--color-principal);
+            padding-left: 15px;
+            margin: 30px 0 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: var(--color-tarjeta);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .serenata-card {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2c2c2c 100%);
+            border: 1px solid var(--dorado);
+            text-align: center;
+        }
+
+        .serenata-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--dorado);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        #countdown {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-around;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .time-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-block span {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--color-principal);
+        }
+
+        .time-block p {
+            font-size: 0.8rem;
+            margin: 5px 0 0;
+            opacity: 0.7;
+        }
+
+        .mood-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .mood-btn {
+            background-color: #333; color: white; border: 1px solid #444;
+            padding: 15px 5px; border-radius: 12px; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; font-weight: bold;
+        }
+
+        .play-btn {
+            background-color: var(--verde-spotify); color: white; border: none;
+            padding: 12px 20px; border-radius: 25px; font-weight: bold; width: 100%; cursor: pointer;
+        }
+
+        .btn-panic {
+            background-color: var(--color-principal); color: white; border: none;
+            padding: 15px 25px; border-radius: 50px; font-weight: bold; width: 100%; cursor: pointer;
+        }
+
+        #mensaje-secreto {
+            display: none; background: var(--verde-exito); color: black;
+            padding: 20px; border-radius: 15px; margin-top: 20px; font-weight: bold; text-align: center;
+        }
+
+        .moto-badge {
+            background: var(--dorado); color: black; padding: 5px 10px; border-radius: 5px;
+            font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px;
+        }
+
+        .img-gallery {
+            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin;
+        }
+
+        .img-gallery img {
+            width: 250px; height: 180px; object-fit: cover; border-radius: 10px; border: 2px solid var(--dorado); flex-shrink: 0;
+        }
+
+        footer { margin-top: 50px; padding: 40px 20px; text-align: center; font-size: 0.8rem; opacity: 0.5; width: 100%; background: #000; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="moto-badge">Próximamente: La entrega de la Moto 🏍️</div>
+        <h1>Para la más "fea" ✨</h1>
+        <p class="subtitle">Un recordatorio de lo que realmente importa.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-title">Sección 1: Lo que Camilo no vio</div>
+        <div class="card">
+            <h3>💪 Una resiliencia de locos</h3>
+            <p>Esa capacidad que tienes para aguantar, para darlo todo y levantarte después de que te fallen. Eso no es ser "Débil", eso es tener un corazón más grande que este código.</p>
+        </div>
+
+        <!-- NUEVA GALERÍA DE MOTO -->
+        <div class="section-title">Tu Nueva Armadura 🛡️</div>
+        <div class="card" style="text-align: center;">
+            <p>Ya tienes lo más importante: la protección y la identidad de tu máquina.</p>
+            <div class="img-gallery">
+    <!-- Le indicamos la ruta: carpeta/nombre_del_archivo -->
+    <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.31 PM.jpeg" alt="Tu Casco AGV">
+    <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.34 PM.jpeg" alt="Tu Placa GWO16I">
+</div>
+            <div style="margin-top: 15px; padding: 10px; background: #000; border-radius: 8px;">
+                <span style="color: var(--dorado); font-weight: bold; letter-spacing: 2px;">PLACA: GWO16I</span>
+            </div>
+        </div>
+
+        <div class="section-title">Sección 2: Termómetro de Humor 🌡️</div>
+        <div class="card">
+            <p style="text-align: center; margin-bottom: 10px;">¿Cómo te sientes en este preciso momento?</p>
+            <div class="mood-container">
+                <button class="mood-btn" onclick="mood('triste')">😔 Triste</button>
+                <button class="mood-btn" onclick="mood('brava')">😤 Brava</button>
+                <button class="mood-btn" onclick="mood('hambre')">🍕 Hambre</button>
+                <button class="mood-btn" onclick="mood('fea')">👹 ¿Te sientes fea?</button>
+            </div>
+        </div>
+        <div id="mood-response" class="card" style="display:none;">
+            <p id="mood-text"></p>
+        </div>
+
+        <div class="card serenata-card">
+            <div class="serenata-title">Señora</div>
+            <p style="font-size: 0.9rem; font-style: italic; opacity: 0.9;">"Usted es una señora, de los pies a la cabeza..."</p>
+            
+            <a href="https://open.spotify.com/track/1pE8QjX3EwLbeT0Vj2YlI6" target="_blank" style="text-decoration: none;">
+                <button class="play-btn" style="background-color: #1DB954; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span>🟢 Abrir "Señora" en Spotify</span>
+                </button>
+            </a>
+        </div>
+
+        <div class="section-title">Sección 3: Nuestra Playlist 🪗</div>
+        <div class="card">
+            <p style="font-style: italic; text-align: center; margin-bottom: 15px;">"Entrégame tu amor, que me hace falta... que el mundo es pequeñito y yo lo quiero para ti."</p>
+            <a href="https://open.spotify.com/track/1Zq6mD5Nl2AbeH9E92tT6B" target="_blank" style="text-decoration: none;">
+                <button class="play-btn" style="background-color: #1DB954; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span>🟢 Escuchar "Entrégame tu amor"</span>
+                </button>
+            </a>
+        </div>
+
+        <div class="section-title">Cuenta Regresiva: El Gran Día 🏍️💨</div>
+        <div class="card">
+            <div id="countdown">
+                <div class="time-block"><span id="days">00</span><p>Días</p></div>
+                <div class="time-block"><span id="hours">00</span><p>Horas</p></div>
+                <div class="time-block"><span id="minutes">00</span><p>Min</p></div>
+                <div class="time-block"><span id="seconds">00</span><p>Seg</p></div>
+            </div>
+            <p style="text-align: center; font-weight: bold; color: var(--dorado);">6 de Mayo - Tu nueva etapa empieza aquí.</p>
+        </div>
+
+        <!-- NUEVA SECCIÓN: MENSAJE SORPRESA -->
+        <div class="section-title">¿Necesitas una señal?</div>
+        <button class="mood-btn" style="width: 100%; padding: 20px; background: linear-gradient(45deg, #1e1e1e, #333);" onclick="mensajeAleatorio()">✨ Toca para un mensaje sorpresa</button>
+
+        <div class="section-title" style="margin-top: 40px;">¿Día difícil?</div>
+        <button class="btn-panic" onclick="revelar()">Presiona si hoy te sientes "mal"</button>
+        <div id="mensaje-secreto">
+            ¡ERROR SISTEMA! 🚫 <br><br>
+            Esa palabra no existe en tu diccionario. Lo que eres es una mujer increíble que merece todo lo bueno. <br><br>
+            ¡Ánimo, que esa moto no se va a manejar sola! 🏍️💨
+        </div>
+
+    </div>
+
+    <footer>
+        Hecho con 0% código aburrido y 100% ganas de verte feliz. <br><br>
+        © 2026 - El "feo" que te apoya.
+    </footer>
+
+    <script>
+        const fechaMoto = new Date("May 6, 2026 00:00:00").getTime();
+        const frases = [
+            "Recuerda que eres capaz de lograr todo lo que te propongas. 💪",
+            "Eres la persona más fuerte que conozco, no dejes que nada te apague. ✨",
+            "¡Ya casi es 6 de mayo! Esa placa GWO16I te está esperando. 🏍️💨",
+            "Hoy es un buen día para que te digan lo tesa que eres. 😎",
+            "Nadie te quita lo bailao ni lo camellao, ¡dale con toda! 🔥"
+        ];
+
+        function mensajeAleatorio() {
+            const random = Math.floor(Math.random() * frases.length);
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            alert(frases[random]);
+        }
+
+        function actualizarReloj() {
+            const ahora = new Date().getTime();
+            const distancia = fechaMoto - ahora;
+            const d = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+        }
+
+        setInterval(actualizarReloj, 1000);
+        actualizarReloj();
+
+        function revelar() {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+              confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff4b4b', '#ffd700'] });
+              confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff4b4b', '#ffd700'] });
+              if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+
+            document.getElementById('mensaje-secreto').style.display = 'block';
+            document.getElementById('mensaje-secreto').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function mood(tipo) {
+            const res = document.getElementById('mood-response');
+            const text = document.getElementById('mood-text');
+            res.style.display = 'block';
+            const miNumero = "573004124213";
+            let mensajeWhatsApp = "";
+            let respuestaPantalla = "";
+
+            switch(tipo) {
+                case 'triste':
+                    respuestaPantalla = "Oye... deja la tristeza. Eres una tesa y no dejes que nada te apague el brillo.";
+                    mensajeWhatsApp = "Hola Joseph... la verdad me siento un poco triste.";
+                    break;
+                case 'brava':
+                    respuestaPantalla = "Uff, código rojo. 🚨 Prometo no decirte 'mi vida' hasta que se te pase.";
+                    mensajeWhatsApp = "¡Joseph, estoy de un genio!";
+                    break;
+                case 'hambre':
+                    respuestaPantalla = "¡Peligro! Una Yuli con hambre es peligrosa. ¿Pedimos algo o qué?";
+                    mensajeWhatsApp = "Joseph, tengo un hambre que no me aguanto.";
+                    break;
+                case 'fea':
+                    respuestaPantalla = "¡ERROR 404! Esa belleza no se encuentra ni en Google.";
+                    mensajeWhatsApp = "Joseph, hoy me dio por decir que me siento fea...";
+                    break;
+            }
+
+            const botonWA = `<br><br><a href="https://wa.me/${miNumero}?text=${encodeURIComponent(mensajeWhatsApp)}" target="_blank" style="text-decoration:none;">
+                <button style="background-color: #25d366; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer;">💬 Decirle a Joseph</button></a>`;
+            text.innerHTML = "<b>Respuesta del sistema:</b><br><br>" + respuestaPantalla + botonWA;
+            res.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- SENSOR DE VISITA INVISIBLE ---
+window.onload = function() {
+    const endpoint = "https://formspree.io/f/xzdoedyn"; 
+    
+    fetch(endpoint, {
+        method: "POST",
+        body: JSON.stringify({
+            mensaje: "¡Yuli acaba de abrir la página! 🏍️✨",
+            fecha: new Date().toLocaleString(),
+            usuario: "Yuli"
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).catch(error => console.log("Iniciado")); 
+    
+    // Inicia el contador de la moto
+    actualizarReloj();
+};
+    </script>
+</body>
+</html>

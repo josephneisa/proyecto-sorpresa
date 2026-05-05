@@ -17,6 +17,8 @@
             --verde-exito: #25d366;
             --verde-spotify: #1DB954;
             --dorado: #ffd700;
+            --azul-break: #4a90e2;
+            --purpura: #a855f7;
         }
 
         body {
@@ -59,7 +61,10 @@
             border-radius: 15px;
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
         }
+
+        .card:active { transform: scale(0.98); }
 
         .serenata-card {
             background: linear-gradient(135deg, #1e1e1e 0%, #2c2c2c 100%);
@@ -141,14 +146,80 @@
             width: 250px; height: 180px; object-fit: cover; border-radius: 10px; border: 2px solid var(--dorado); flex-shrink: 0;
         }
 
+        /* --- ESTILOS DE LOS JUEGOS --- */
+        .burbuja {
+            width: 45px; height: 45px;
+            background: radial-gradient(circle at 30% 30%, #ffffff55, #4a90e288);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 50%; cursor: pointer; transition: all 0.2s ease;
+        }
+        .burbuja:active { transform: scale(0); }
+
+        .memory-game {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 15px;
+        }
+        .memory-card {
+            height: 60px; background-color: var(--purpura); border-radius: 8px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; transition: 0.3s;
+        }
+        .memory-card.flip { background-color: #eee; transform: rotateY(180deg); }
+        .memory-card span { display: none; }
+        .memory-card.flip span { display: block; transform: rotateY(180deg); }
+        .memory-card.matched { background-color: var(--verde-exito); opacity: 0.5; cursor: default; }
+
+        /* --- ESTILOS EASTER EGG --- */
+        #easter-egg-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;
+        }
+        #secret-photo { max-width: 60%; border-radius: 15px; border: 3px solid var(--dorado); cursor: pointer; transition: transform 0.3s; }
+        #secret-photo:hover { transform: scale(1.05); }
+
+        #secret-letter {
+            display: none; width: 80%; max-width: 400px; background: #fdfcf0; color: #333;
+            padding: 30px; border-radius: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: 'Playfair Display', serif; line-height: 1.6; position: relative;
+        }
+        #secret-letter::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid #d4af37; pointer-events: none; }
+
         footer { margin-top: 50px; padding: 40px 20px; text-align: center; font-size: 0.8rem; opacity: 0.5; width: 100%; background: #000; }
+
+#trigger-fea {
+    color: inherit; 
+    text-decoration: none;
+    font-weight: inherit;
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+}
+
     </style>
 </head>
 <body>
 
+    <!-- MODALES DEL EASTER EGG -->
+    <div id="easter-egg-overlay">
+        <!-- Paso 1: La foto -->
+        <div id="photo-step" style="text-align: center;">
+            <img src="carpeta fotos/WhatsApp Image 2026-05-05 at 12.59.39 AM (1).jpeg" id="secret-photo" onclick="mostrarCarta()" alt="Tócame">
+            <p style="color: var(--dorado); margin-top: 15px; font-weight: bold;">Toca la foto para leer algo...</p>
+        </div>
+        
+        <!-- Paso 2: La carta -->
+        <div id="secret-letter">
+            <h3 style="text-align: center; color: #b8860b;">Para mi persona favorita</h3>
+            <p>
+                "Hola, no se si hayas encontrado esta carta y este secreto. Quiero decirte que eres la mujer más admiro que amo y quiero con todo mi corazón, no se si algun momento encontraras estas palabras y esta carta pero quiero demostrate el amor que te tengo y quiero demostrate muchas cosas que otras personas no te han demostrado. Te pido que nunca pares de sonreir amo esa sonrisa y esas vibra que tienes ante todo por esa razon escogi esa foto por tu sonrisa tan hermosa y por lo feliz que me hace esa foto, esa sonrisa es lo que ilumina mis días y me hace ser feliz. Estoy orgulloso de ti."
+            </p>
+            <p style="text-align: right; font-style: italic;">— Joseph</p>
+            <button onclick="cerrarTodo()" style="width: 100%; background: #333; color: white; border: none; padding: 10px; cursor: pointer; margin-top: 20px;">Cerrar</button>
+        </div>
+    </div>
+
     <header>
         <div class="moto-badge">Próximamente: La entrega de la Moto 🏍️</div>
-        <h1>Para la más "fea" ✨</h1>
+        <!-- AQUÍ ESTABA EL ERROR, AHORA YA TIENE EL ID trigger-fea -->
+        <h1>Para la más <span id="trigger-fea">"fea"</span> ✨</h1>
         <p class="subtitle">Un recordatorio de lo que realmente importa.</p>
     </header>
 
@@ -160,15 +231,19 @@
             <p>Esa capacidad que tienes para aguantar, para darlo todo y levantarte después de que te fallen. Eso no es ser "Débil", eso es tener un corazón más grande que este código.</p>
         </div>
 
-        <!-- NUEVA GALERÍA DE MOTO -->
+        <div class="card">
+            <h3>✨ Tu esencia real</h3>
+            <p>El mundo ve una niña bonita, pero yo veo a la mujer que estudia, que se esfuerza y que tiene un humor que solo nosotros entendemos. Eso es lo que te hace una <b>tesa</b>.</p>
+        </div>
+
         <div class="section-title">Tu Nueva Armadura 🛡️</div>
         <div class="card" style="text-align: center;">
             <p>Ya tienes lo más importante: la protección y la identidad de tu máquina.</p>
             <div class="img-gallery">
-    <!-- Le indicamos la ruta: carpeta/nombre_del_archivo -->
-    <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.31 PM.jpeg" alt="Tu Casco AGV">
-    <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.34 PM.jpeg" alt="Tu Placa GWO16I">
-</div>
+                <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.31 PM.jpeg" alt="Tu Casco AGV">
+                <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.34 PM.jpeg" alt="Tu Placa GWO16I">
+                <img src="carpeta fotos/WhatsApp Image 2026-05-05 at 12.22.53 AM.jpeg" alt="Confirmación de la Placa">  
+            </div>
             <div style="margin-top: 15px; padding: 10px; background: #000; border-radius: 8px;">
                 <span style="color: var(--dorado); font-weight: bold; letter-spacing: 2px;">PLACA: GWO16I</span>
             </div>
@@ -182,20 +257,21 @@
                 <button class="mood-btn" onclick="mood('brava')">😤 Brava</button>
                 <button class="mood-btn" onclick="mood('hambre')">🍕 Hambre</button>
                 <button class="mood-btn" onclick="mood('fea')">👹 ¿Te sientes fea?</button>
+                <button class="mood-btn" style="background: var(--azul-break);" onclick="mood('estres')">🤯 Estoy en Break</button>
+                <button class="mood-btn" style="background: var(--purpura);" onclick="mood('aburrida')">😴 Aburrida</button>
             </div>
         </div>
+
         <div id="mood-response" class="card" style="display:none;">
             <p id="mood-text"></p>
+            <div id="game-area"></div>
         </div>
 
         <div class="card serenata-card">
             <div class="serenata-title">Señora</div>
             <p style="font-size: 0.9rem; font-style: italic; opacity: 0.9;">"Usted es una señora, de los pies a la cabeza..."</p>
-            
             <a href="https://open.spotify.com/track/1pE8QjX3EwLbeT0Vj2YlI6" target="_blank" style="text-decoration: none;">
-                <button class="play-btn" style="background-color: #1DB954; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <span>🟢 Abrir "Señora" en Spotify</span>
-                </button>
+                <button class="play-btn">🟢 Abrir "Señora" en Spotify</button>
             </a>
         </div>
 
@@ -203,9 +279,7 @@
         <div class="card">
             <p style="font-style: italic; text-align: center; margin-bottom: 15px;">"Entrégame tu amor, que me hace falta... que el mundo es pequeñito y yo lo quiero para ti."</p>
             <a href="https://open.spotify.com/track/1Zq6mD5Nl2AbeH9E92tT6B" target="_blank" style="text-decoration: none;">
-                <button class="play-btn" style="background-color: #1DB954; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <span>🟢 Escuchar "Entrégame tu amor"</span>
-                </button>
+                <button class="play-btn">🟢 Escuchar "Entrégame tu amor"</button>
             </a>
         </div>
 
@@ -220,7 +294,6 @@
             <p style="text-align: center; font-weight: bold; color: var(--dorado);">6 de Mayo - Tu nueva etapa empieza aquí.</p>
         </div>
 
-        <!-- NUEVA SECCIÓN: MENSAJE SORPRESA -->
         <div class="section-title">¿Necesitas una señal?</div>
         <button class="mood-btn" style="width: 100%; padding: 20px; background: linear-gradient(45deg, #1e1e1e, #333);" onclick="mensajeAleatorio()">✨ Toca para un mensaje sorpresa</button>
 
@@ -240,6 +313,53 @@
     </footer>
 
     <script>
+        // --- DETECTOR DE VISITAS (NOTIFICACIÓN) ---
+        window.addEventListener('load', function() {
+            if (!sessionStorage.getItem('visitado')) {
+                fetch("https://formspree.io/f/xeengzvw", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        Alerta: "¡Yuli ha abierto su página!",
+                        Fecha: new Date().toLocaleString()
+                    }),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) sessionStorage.setItem('visitado', 'true');
+                });
+            }
+        });
+
+        // --- LÓGICA DEL EASTER EGG ---
+        let countFea = 0;
+        let lastClick = 0;
+        document.getElementById('trigger-fea').onclick = function() {
+            const now = new Date().getTime();
+            if (now - lastClick > 1000) countFea = 0;
+            countFea++;
+            lastClick = now;
+
+            if(countFea === 3) {
+                confetti({ particleCount: 150, spread: 70 });
+                document.getElementById('easter-egg-overlay').style.display = 'flex';
+                countFea = 0;
+            }
+        };
+
+        function mostrarCarta() {
+            document.getElementById('photo-step').style.display = 'none';
+            document.getElementById('secret-letter').style.display = 'block';
+        }
+
+        function cerrarTodo() {
+            document.getElementById('easter-egg-overlay').style.display = 'none';
+            document.getElementById('photo-step').style.display = 'block';
+            document.getElementById('secret-letter').style.display = 'none';
+        }
+
         const fechaMoto = new Date("May 6, 2026 00:00:00").getTime();
         const frases = [
             "Recuerda que eres capaz de lograr todo lo que te propongas. 💪",
@@ -258,29 +378,15 @@
         function actualizarReloj() {
             const ahora = new Date().getTime();
             const distancia = fechaMoto - ahora;
-            const d = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const h = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distancia % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+            document.getElementById("days").innerText = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((distancia % (1000 * 60)) / 1000);
         }
-
         setInterval(actualizarReloj, 1000);
-        actualizarReloj();
 
         function revelar() {
-            var duration = 3 * 1000;
-            var end = Date.now() + duration;
-            (function frame() {
-              confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff4b4b', '#ffd700'] });
-              confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff4b4b', '#ffd700'] });
-              if (Date.now() < end) requestAnimationFrame(frame);
-            }());
-
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
             document.getElementById('mensaje-secreto').style.display = 'block';
             document.getElementById('mensaje-secreto').scrollIntoView({ behavior: 'smooth' });
         }
@@ -288,56 +394,72 @@
         function mood(tipo) {
             const res = document.getElementById('mood-response');
             const text = document.getElementById('mood-text');
+            const gameArea = document.getElementById('game-area');
             res.style.display = 'block';
-            const miNumero = "573004124213";
-            let mensajeWhatsApp = "";
-            let respuestaPantalla = "";
+            gameArea.innerHTML = ''; 
+
+            let msgWA = ""; let respuesta = "";
 
             switch(tipo) {
-                case 'triste':
-                    respuestaPantalla = "Oye... deja la tristeza. Eres una tesa y no dejes que nada te apague el brillo.";
-                    mensajeWhatsApp = "Hola Joseph... la verdad me siento un poco triste.";
-                    break;
-                case 'brava':
-                    respuestaPantalla = "Uff, código rojo. 🚨 Prometo no decirte 'mi vida' hasta que se te pase.";
-                    mensajeWhatsApp = "¡Joseph, estoy de un genio!";
-                    break;
-                case 'hambre':
-                    respuestaPantalla = "¡Peligro! Una Yuli con hambre es peligrosa. ¿Pedimos algo o qué?";
-                    mensajeWhatsApp = "Joseph, tengo un hambre que no me aguanto.";
-                    break;
-                case 'fea':
-                    respuestaPantalla = "¡ERROR 404! Esa belleza no se encuentra ni en Google.";
-                    mensajeWhatsApp = "Joseph, hoy me dio por decir que me siento fea...";
-                    break;
+                case 'triste': respuesta = "Oye... deja la tristeza. Eres una tesa."; msgWA = "Hola Joseph... me siento un poco triste."; break;
+                case 'brava': respuesta = "Uff, código rojo. 🚨 Prometo no decirte 'mi vida' hasta que se te pase."; msgWA = "¡Joseph, estoy de un genio!"; break;
+                case 'hambre': respuesta = "¡Peligro! Una Yuli con hambre es peligrosa. ¿Pedimos algo?"; msgWA = "Joseph, tengo mucha hambre."; break;
+                case 'fea': respuesta = "¡ERROR 404! Esa belleza no se encuentra ni en Google."; msgWA = "Joseph, hoy me siento fea..."; break;
+                case 'estres': 
+                    respuesta = "¡CALMA! 🛑 Explota burbujas para calmar el estrés."; 
+                    msgWA = "Joseph, estoy estresada, me mandas un abrazo?";
+                    iniciarBurbujas(); break;
+                case 'aburrida': 
+                    respuesta = "¡Hora de un reto! Encuentra las parejas de la suerte. 🍀"; 
+                    msgWA = "Joseph, estoy aburrida, hagamos algo divertido.";
+                    iniciarMemoria(); break;
             }
 
-            const botonWA = `<br><br><a href="https://wa.me/${miNumero}?text=${encodeURIComponent(mensajeWhatsApp)}" target="_blank" style="text-decoration:none;">
+            const botonWA = `<br><br><a href="https://wa.me/573004124213?text=${encodeURIComponent(msgWA)}" target="_blank" style="text-decoration:none;">
                 <button style="background-color: #25d366; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer;">💬 Decirle a Joseph</button></a>`;
-            text.innerHTML = "<b>Respuesta del sistema:</b><br><br>" + respuestaPantalla + botonWA;
+            text.innerHTML = "<b>Sistema:</b><br>" + respuesta + botonWA;
             res.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // --- SENSOR DE VISITA INVISIBLE ---
-window.onload = function() {
-    const endpoint = "https://formspree.io/f/xzdoedyn"; 
-    
-    fetch(endpoint, {
-        method: "POST",
-        body: JSON.stringify({
-            mensaje: "¡Yuli acaba de abrir la página! 🏍️✨",
-            fecha: new Date().toLocaleString(),
-            usuario: "Yuli"
-        }),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        function iniciarBurbujas() {
+            const area = document.getElementById('game-area');
+            area.innerHTML = '<div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:15px;"></div>';
+            for(let i=0; i<15; i++) {
+                const b = document.createElement('div'); b.className = 'burbuja';
+                b.onclick = function() { this.style.transform = 'scale(0)'; setTimeout(()=>this.style.display='none', 150); };
+                area.firstChild.appendChild(b);
+            }
         }
-    }).catch(error => console.log("Iniciado")); 
-    
-    // Inicia el contador de la moto
-    actualizarReloj();
-};
+
+        function iniciarMemoria() {
+            const area = document.getElementById('game-area');
+            area.innerHTML = '<div class="memory-game"></div>';
+            const emojis = ['🏍️','💖','🍀','🍕','✨','🎧','⚡','🌙'];
+            const deck = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+            let picked = [];
+            deck.forEach(e => {
+                const c = document.createElement('div'); c.className = 'memory-card';
+                c.innerHTML = `<span>${e}</span>`;
+                c.onclick = function() {
+                    if(picked.length < 2 && !this.classList.contains('flip')) {
+                        this.classList.add('flip'); picked.push(this);
+                        if(picked.length === 2) {
+                            if(picked[0].innerHTML === picked[1].innerHTML) {
+                                picked.forEach(card => card.classList.add('matched')); picked = [];
+                                if(document.querySelectorAll('.matched').length === 16) confetti();
+                            } else {
+                                setTimeout(() => { picked.forEach(card => card.classList.remove('flip')); picked = []; }, 800);
+                            }
+                        }
+                    }
+                };
+                area.firstChild.appendChild(c);
+            });
+        }
+
+        window.onload = function() {
+            actualizarReloj();
+        };
     </script>
 </body>
 </html>

@@ -343,6 +343,42 @@
         cursor: default;
     }
 
+    /* Estilo del botón (ajusta colores si es necesario) */
+.btn-panic {
+    background-color: #ff4d4d; /* Color rojizo de la imagen */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.2s;
+}
+
+.btn-panic:active {
+    transform: scale(0.95);
+}
+
+/* El recuadro verde del mensaje */
+.recuadro-verde-emergente {
+    display: none; /* Se mantiene oculto al inicio */
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(46, 204, 113, 0.1); /* Fondo verde suave */
+    border: 2px solid #2ecc71; /* Borde verde brillante */
+    border-radius: 15px;
+    color: white;
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 </style>
 
 </head>
@@ -485,13 +521,18 @@
         <div class="section-title slide-left">¿Necesitas una señal?</div>
         <button class="mood-btn" style="width: 100%; padding: 20px; background: linear-gradient(45deg, #1e1e1e, #333);" onclick="mensajeAleatorio()">✨ Toca para un mensaje sorpresa</button>
 
-        <div class="section-title slide-left" style="margin-top: 40px;">¿Día difícil?</div>
-        <button class="btn-panic" onclick="revelar()">Presiona si hoy te sientes "mal"</button>
-        <div id="mensaje-secreto">
-            ¡ERROR SISTEMA! 🚫 <br><br>
-            Esa palabra no existe en tu diccionario. Lo que eres es una mujer increíble que merece todo lo bueno. <br><br>
-            ¡Ánimo, que esa moto no se va a manejar sola! 🏍️💨
-        </div>
+        <!-- SECCIÓN DE APOYO INTERACTIVA -->
+<div class="section-title slide-left">¿Día difícil?</div>
+<div class="card fade-in" style="text-align: center;">
+    <button class="btn-panic" onclick="revelar()">Presiona si hoy te sientes "mal"</button>
+
+    <!-- Este es el recuadro que aparecerá al hacer clic -->
+    <div id="mensaje-secreto" class="recuadro-verde-emergente">
+        <h3 style="color: #2ecc71; margin-top: 0;">¡ERROR SISTEMA! 🚫</h3>
+        <p>Esa palabra no existe en tu diccionario. Lo que eres es una mujer increíble que merece todo lo bueno.</p>
+        <p style="font-weight: bold;">¡Ánimo, que esa moto no se va a manejar sola! 🏍️💨</p>
+    </div>
+</div>
 
     </div>
 
@@ -845,6 +886,27 @@ function crearEstrellaFugaz() {
 
 // ⏱️ Cada 4 segundos
 setInterval(crearEstrellaFugaz, 4000);
+
+function revelar() {
+    const mensaje = document.getElementById('mensaje-secreto');
+    
+    // Si está oculto, lo muestra. Si ya está visible, lo oculta (toggle).
+    if (mensaje.style.display === "none" || mensaje.style.display === "") {
+        mensaje.style.display = "block";
+        
+        // Lanza confeti para animar el momento
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+
+        // Baja la pantalla automáticamente para que vea el mensaje
+        mensaje.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        mensaje.style.display = "none";
+    }
+}
 
 window.onload = function() {
     actualizarReloj();       // El contador al 8 de mayo

@@ -764,6 +764,17 @@
 
 </section>
 
+<input 
+type="text" 
+id="detector-feo" 
+style="
+position:fixed;
+opacity:0;
+pointer-events:none;
+height:0;
+width:0;
+">
+
     <!-- ========================= -->
 <!-- EASTER EGG FEO -->
 <!-- ========================= -->
@@ -799,7 +810,7 @@
         <p>
             Espero que te guste este detalle de verdad, gracias por permitirme estar en tu vida y estar a tu lado en cada paso del camino. Y aunque a veces me guste bromear contigo, espero poder conocer mas de ti y seguir a tu lado hasta que me permitas ser parte de tu mundo y mas que un solo amigo y ser tu compañero de aventuras, tu apoyo incondicional y tu fan número uno. Te amo mucho,
             Quiero recordarte
-            lo especial que eres yuli ✨
+            lo especial que eres yuli✨
         </p>
 
         <span>Todo lo que vales importa</span>
@@ -1220,46 +1231,55 @@ function revelar() {
 
 /* ========================= */
 /* EASTER EGG "FEO" */
+/* FUNCIONA EN CELULAR */
 /* ========================= */
 
 let typedText = "";
 
-document.addEventListener("keydown", (e) => {
+// Detecta escritura REAL en celular
+document.addEventListener("input", (e) => {
 
-    typedText += e.key.toLowerCase();
+    if(e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA"){
 
-    if(typedText.includes("feo")){
+        typedText += e.data ? e.data.toLowerCase() : "";
 
-        const egg = document.getElementById("feoEasterEgg");
-        const video = document.getElementById("feoVideo");
-        const carta = document.getElementById("feoCarta");
+        if(typedText.includes("feo")){
 
-        egg.classList.add("active");
+            abrirEasterEgg();
 
-        document.body.style.overflow = "hidden";
+            typedText = "";
+        }
 
-        carta.classList.add("hidden");
-
-        video.currentTime = 0;
-
-        video.play();
-
-        video.onended = () => {
-
-            carta.classList.remove("hidden");
-
-        };
-
-        typedText = "";
+        // Limita memoria
+        if(typedText.length > 20){
+            typedText = typedText.slice(-20);
+        }
     }
-
-    if(typedText.length > 20){
-
-        typedText = typedText.slice(-20);
-
-    }
-
 });
+
+// Función principal
+function abrirEasterEgg(){
+
+    const egg = document.getElementById("feoEasterEgg");
+    const video = document.getElementById("feoVideo");
+    const carta = document.getElementById("feoCarta");
+
+    egg.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+    carta.classList.add("hidden");
+
+    video.currentTime = 0;
+
+    video.play();
+
+    video.onended = () => {
+
+        carta.classList.remove("hidden");
+
+    };
+}
 
 /* CERRAR EASTER EGG */
 
@@ -1281,6 +1301,7 @@ document.getElementById("feoEasterEgg")
 });
 
 window.onload = function() {
+    document.getElementById("detector-feo").focus();
     actualizarReloj();       // El contador al 8 de mayo
     obtenerSaludoDinamico(); // El saludo en el subtítulo
     consultarClima();        // La API del clima de Bogotá

@@ -379,6 +379,190 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+.momento-entrega{
+    margin-top:60px;
+    padding:70px 25px;
+    text-align:center;
+    border-radius:30px;
+    background:
+    linear-gradient(180deg,#1c1c1c,#0e0e0e);
+
+    box-shadow:0 0 40px rgba(162,0,255,.15);
+}
+
+.momento-entrega h2{
+    font-size:2.5rem;
+    color:white;
+    margin-bottom:20px;
+}
+
+.momento-entrega p{
+    color:#d4d4d4;
+    font-size:1.2rem;
+    line-height:1.8;
+}
+
+.mensaje-grande{
+    margin-top:20px;
+    font-size:1.5rem !important;
+    color:white !important;
+    font-weight:bold;
+}
+
+.placa{
+    margin:35px auto;
+    width:max-content;
+    padding:16px 35px;
+    background:white;
+    color:black;
+    border-radius:12px;
+    font-size:2rem;
+    font-weight:bold;
+    letter-spacing:5px;
+}
+
+.frase-final{
+    margin-top:20px;
+    font-style:italic;
+    opacity:.9;
+}
+
+/* ========================= */
+/* EASTER EGG FEO */
+/* ========================= */
+
+.hidden{
+    display:none;
+}
+
+.feo-easter-egg{
+    position:fixed;
+    inset:0;
+
+    background:black;
+
+    z-index:99999;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    padding:20px;
+
+    overflow-y:auto;
+}
+
+.feo-easter-egg.active{
+    display:flex;
+}
+
+.feo-easter-egg.active{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle,
+        transparent 20%,
+        rgba(0,0,0,.92) 90%
+    );
+}
+
+.feo-video{
+    width:90vw;
+    max-width:900px;
+
+    aspect-ratio:16/9;
+
+    object-fit:cover;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 0 40px rgba(162,0,255,.25);
+
+    z-index:2;
+
+    opacity:0;
+
+    animation:videoReveal 2s forwards;
+}
+
+.feo-carta{
+    margin-top:40px;
+
+    max-width:700px;
+
+    padding:40px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:30px;
+
+    text-align:center;
+
+    z-index:3;
+
+    animation:fadeUp 1.5s ease;
+}
+
+.feo-carta h2{
+    color:white;
+    margin-bottom:20px;
+    font-size:2.4rem;
+}
+
+.feo-carta p{
+    color:#d4d4d4;
+    line-height:1.9;
+    margin-bottom:20px;
+    font-size:1.1rem;
+}
+
+.feo-carta span{
+    color:#b84dff;
+    font-size:1.5rem;
+    font-weight:bold;
+}
+
+@keyframes videoReveal{
+
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
 </style>
 
 </head>
@@ -437,6 +621,7 @@
             <p>Ya tienes lo más importante: la protección y la identidad de tu máquina.</p>
             <div class="img-gallery zoom-in">
                 <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.31 PM.jpeg" alt="Tu Casco AGV">
+                <img src="carpeta fotos/WhatsApp Image 2026-05-08 at 2.11.26 PM (2).jpeg" alt="Tus papeles en regla">
                 <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.34 PM.jpeg" alt="Tu Placa GWO16I">
                 <img src="carpeta fotos/WhatsApp Image 2026-05-05 at 12.22.53 AM.jpeg" alt="Confirmación de la Placa">  
             </div>
@@ -521,6 +706,17 @@
         <div class="section-title slide-left">¿Necesitas una señal?</div>
         <button class="mood-btn" style="width: 100%; padding: 20px; background: linear-gradient(45deg, #1e1e1e, #333);" onclick="mensajeAleatorio()">✨ Toca para un mensaje sorpresa</button>
 
+<div class="section-title slide-left">Sección Especial: Tu Llave 🔑</div>
+<div class="card fade-in" style="text-align: center; border: 2px solid var(--dorado);">
+    <p>Toca la llave para encender esta nueva etapa:</p>
+    <button onclick="entregaEspecial()" style="font-size: 3rem; background: none; border: none; cursor: pointer;">
+        🔑
+    </button>
+    <div id="mensaje-entrega" style="display:none; margin-top: 15px; font-weight: bold; color: var(--dorado);">
+        ¡Felicidades, Motera! Disfruta tu Raider 125 con toda la responsabilidad y alegría del mundo.
+    </div>
+</div>
+
         <!-- SECCIÓN DE APOYO INTERACTIVA -->
 <div class="section-title slide-left">¿Día difícil?</div>
 <div class="card fade-in" style="text-align: center;">
@@ -532,6 +728,88 @@
         <p>Esa palabra no existe en tu diccionario. Lo que eres es una mujer increíble que merece todo lo bueno.</p>
         <p style="font-weight: bold;">¡Ánimo, que esa moto no se va a manejar sola! 🏍️💨</p>
     </div>
+</div>
+
+<header>
+    <div class="moto-badge">
+        ✨ ¡HOY ES EL DÍA, YULI! 🏍️💨
+    </div>
+
+    <h1>¡Bienvenida a la Ruta! 🏁</h1>
+
+    <p class="subtitle">
+        Oficialmente propietaria de la <b>GWO16I</b>
+    </p>
+</header>
+
+<section class="momento-entrega">
+
+    <h2>🏍️ El comienzo de algo increíble</h2>
+
+    <p>
+        Hoy no solo recibes una moto...
+    </p>
+
+    <p class="mensaje-grande">
+        recibes libertad, nuevas aventuras y kilómetros de felicidad ✨
+    </p>
+
+    <div class="placa">
+        GWO16I
+    </div>
+
+    <p class="frase-final">
+        Que cada ruta te recuerde lo lejos que puedes llegar 💜
+    </p>
+
+</section>
+
+    <!-- ========================= -->
+<!-- EASTER EGG FEO -->
+<!-- ========================= -->
+
+<div id="feoEasterEgg" class="feo-easter-egg">
+
+    <div class="overlay"></div>
+
+    <!-- VIDEO -->
+    <video
+        id="feoVideo"
+        class="feo-video"
+        playsinline
+        controls
+    >
+        <source src="carpeta fotos/WhatsApp Video 2026-05-08 at 3.30.26 PM.mp4" type="video/mp4">
+    </video>
+
+    <!-- CARTA -->
+    <div id="feoCarta" class="feo-carta hidden">
+
+        <h2>💜 Para Yuli</h2>
+
+        <p>
+            Tal vez no siempre encuentres caminos fáciles...
+            pero nunca olvides lo fuerte que eres.
+        </p>
+
+        <p>
+            Hoy comienza un antes y un después, no solo por la moto, sino por todo lo que representa: tu esfuerzo, tu pasión y tu crecimiento, todo lo que has superado para llegar aquí. Eres una inspiración y mereces cada alegría que esta nueva etapa que trae consigo.
+        </p>
+
+        <p>
+            Espero que te guste este detalle de verdad, gracias por permitirme estar en tu vida y estar a tu lado en cada paso del camino. Y aunque a veces me guste bromear contigo, espero poder conocer mas de ti y seguir a tu lado hasta que me permitas ser parte de tu mundo y mas que un solo amigo y ser tu compañero de aventuras, tu apoyo incondicional y tu fan número uno. Te amo mucho,
+            Quiero recordarte
+            lo especial que eres yuli✨
+        </p>
+
+        <span>Todo lo que vales importa</span>
+
+    </div>
+
+</div>
+</div>
+
+</div>
 </div>
 
     </div>
@@ -561,6 +839,7 @@
                 });
             }
         });
+
 
         // --- LÓGICA DEL EASTER EGG ---
         let countFea = 0;
@@ -613,6 +892,37 @@
             document.getElementById("seconds").innerText = Math.floor((distancia % (1000 * 60)) / 1000);
         }
         setInterval(actualizarReloj, 1000);
+
+        function actualizarReloj() {
+    const ahora = new Date().getTime();
+    const distancia = fechaMoto - ahora;
+    
+    if (distancia <= 0) {
+        document.getElementById("countdown").innerHTML = 
+            "<h2 style='color:var(--verde-exito); width:100%'>¡META ALCANZADA! 🥳🎉</h2>";
+    } else {
+        // ... (mantén tu lógica actual de días/horas por si acaso)
+    }
+}
+
+        function entregaEspecial() {
+    // Confeti masivo
+    var duration = 5 * 1000;
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+    var interval = setInterval(function() {
+        var timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+        var particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+    }, 250);
+
+    document.getElementById('mensaje-entrega').style.display = 'block';
+}
 
         function revelar() {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
@@ -907,6 +1217,68 @@ function revelar() {
         mensaje.style.display = "none";
     }
 }
+
+/* ========================= */
+/* EASTER EGG "FEO" */
+/* ========================= */
+
+let typedText = "";
+
+document.addEventListener("keydown", (e) => {
+
+    typedText += e.key.toLowerCase();
+
+    if(typedText.includes("feo")){
+
+        const egg = document.getElementById("feoEasterEgg");
+        const video = document.getElementById("feoVideo");
+        const carta = document.getElementById("feoCarta");
+
+        egg.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+        carta.classList.add("hidden");
+
+        video.currentTime = 0;
+
+        video.play();
+
+        video.onended = () => {
+
+            carta.classList.remove("hidden");
+
+        };
+
+        typedText = "";
+    }
+
+    if(typedText.length > 20){
+
+        typedText = typedText.slice(-20);
+
+    }
+
+});
+
+/* CERRAR EASTER EGG */
+
+document.getElementById("feoEasterEgg")
+.addEventListener("click", () => {
+
+    const egg = document.getElementById("feoEasterEgg");
+    const carta = document.getElementById("feoCarta");
+    const video = document.getElementById("feoVideo");
+
+    egg.classList.remove("active");
+
+    carta.classList.add("hidden");
+
+    video.pause();
+
+    document.body.style.overflow = "auto";
+
+});
 
 window.onload = function() {
     actualizarReloj();       // El contador al 8 de mayo

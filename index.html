@@ -563,6 +563,52 @@
     }
 }
 
+.foto-epica{
+    position:relative;
+    overflow:hidden;
+    padding:0;
+    border-radius:25px;
+}
+
+.foto-yuli{
+    width:100%;
+    display:block;
+    object-fit:cover;
+}
+
+.overlay-foto{
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.85),
+        rgba(0,0,0,.15)
+    );
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    padding:25px;
+}
+
+.overlay-foto h2{
+    color:white;
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.overlay-foto p{
+    color:#ddd;
+    margin-bottom:10px;
+}
+
+.overlay-foto span{
+    color:#d28cff;
+    font-weight:bold;
+}
+
 </style>
 
 </head>
@@ -616,9 +662,9 @@
             <p>El mundo ve una niña bonita, pero yo veo a la mujer que estudia, que se esfuerza y que tiene un humor que solo nosotros entendemos. Eso es lo que te hace una <b>tesa</b>.</p>
         </div>
 
-        <div class="section-title slide-left">Tu Nueva Armadura 🛡️</div>
+        <div class="section-title slide-left">Tu Nuevo Comiezo 🛡️</div>
         <div class="card fade-in" style="text-align: center;">
-            <p>Ya tienes lo más importante: la protección y la identidad de tu máquina.</p>
+            <p>Ya tienes lo más importante: la protección y la identidad.</p>
             <div class="img-gallery zoom-in">
                 <img src="carpeta fotos/WhatsApp Image 2026-05-03 at 7.41.31 PM.jpeg" alt="Tu Casco AGV">
                 <img src="carpeta fotos/WhatsApp Image 2026-05-08 at 2.11.26 PM (2).jpeg" alt="Tus papeles en regla">
@@ -713,7 +759,7 @@
         🔑
     </button>
     <div id="mensaje-entrega" style="display:none; margin-top: 15px; font-weight: bold; color: var(--dorado);">
-        ¡Felicidades, Motera! Disfruta tu Raider 125 con toda la responsabilidad y alegría del mundo.
+        ¡Felicidades! Disfruta tu Raider 125 con toda la responsabilidad y alegría del mundo.
     </div>
 </div>
 
@@ -818,6 +864,27 @@ width:0;
     </div>
 
 </div>
+
+<div class="section-title slide-left">
+    La dueña de la GWO16I 🏍️
+</div>
+
+<div class="card fade-in foto-epica">
+
+    <img src="carpeta fotos/WhatsApp Image 2026-05-08 at 11.40.11 PM.jpeg" class="foto-yuli">
+
+    <div class="overlay-foto">
+        <h2>No era solo una moto.</h2>
+
+        <p>
+            Era demostrarte que sí podías.
+        </p>
+
+        <span>✨ Y mira lo increíble que te ves haciéndolo.</span>
+    </div>
+
+</div>
+
 </div>
 
 </div>
@@ -834,7 +901,7 @@ width:0;
         // --- DETECTOR DE VISITAS (NOTIFICACIÓN) ---
         window.addEventListener('load', function() {
             if (!sessionStorage.getItem('visitado')) {
-                fetch("https://formspree.io/f/xeengzvw", {
+                fetch("https://formspree.io/f/xzdoedyn", {
                     method: "POST",
                     body: JSON.stringify({
                         Alerta: "¡Yuli ha abierto su página!",
@@ -884,7 +951,7 @@ width:0;
             "Recuerda que eres capaz de lograr todo lo que te propongas. 💪",
             "Eres la persona más fuerte que conozco, no dejes que nada te apague. ✨",
             "¡Ya casi es 8 de mayo! Esa placa GWO16I te está esperando. 🏍️💨",
-            "Hoy es un buen día para que te digan lo tesa que eres. 😎",
+            "Hoy es un buen día para que te digan lo fuerte que eres. 😎",
             "Nadie te quita lo bailao ni lo camellao, ¡dale con toda! 🔥"
         ];
 
@@ -1050,7 +1117,7 @@ function obtenerSaludoDinamico() {
     let saludo = "";
 
     if (hora >= 6 && hora < 12) {
-        saludo = "¡Buenos días, tesa! ☀️ Vamos por ese día.";
+        saludo = "¡Buenos días, Yuli! ☀️ Vamos por ese día.";
     } else if (hora >= 12 && hora < 18) {
         saludo = "¡Buenas tardes! ✨ ¿Cómo va ese break?";
     } else {
@@ -1087,8 +1154,8 @@ function gestionarReproductor() {
 
     if (hora >= 6 && hora < 12) {
         // MAÑANA: P.Y.T. (Pretty Young Thing)
-        trackId = "1CgmY8fVN7kstVDZmsdM5k";
-        mensaje = "☀️ ¡Mañana con energía con P.Y.T.! Vamos por ese día, Yuli.";
+        trackId = "5SqG2MEuRjwhxi1DcRR4V8";
+        mensaje = "☀️ ¡Mañana con energía! Vamos por ese día, Yuli.";
     } else if (hora >= 12 && hora < 18) {
         // TARDE: Mil Flores
         trackId = "0u4sl96WEsEM7PMcWdxaTG";
